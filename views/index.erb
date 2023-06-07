@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <h1>Ruby Blog</h1>
+          <img
+            class="logo-img"
+            src="https://res.cloudinary.com/drh4lw1m7/image/upload/v1684406814/logo_vxckog.png"
+          />
+        </div>
+        <div class="navbar">
+          <div class="navItem">Stories</div>
+          <div class="navItem">Category</div>
+          <div class="navItem active">Blog</div>
+          <div class="navItem">Contact</div>
+        </div>
+      </div>
+
+      <div class="title">
+        <h2>Want to know more about Ruby ?</h2>
+      </div>
+
+      <div class="box">
+        <form action="/search" method="get" class="form">
+          <input placeholder="Search..." type="text" id="query" name="query" />
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </div>
+
+      <div class="first_card">
+        <img src=<%=latestPost['featured_image'] %> />
+        <div class="card_content">
+          <h2><%= latestPost['title'] %></h2>
+          <p>
+            <span>Summary: </span>
+            <%= latestPost['summary'] %>...
+          </p>
+
+          <p />
+          <div class="t_ag_container">
+            <p>Tags :</p>
+
+            <% latestPost['tags'].each do |tag|%>
+            <div class="t_ag"><%= tag['name'] %></div>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="body_post">
+        <% data['data'].each do |blog|%>
+
+        <a href="/detail/<%= blog['slug'] %>">
+          <div class="card">
+            <img src=<%=blog['featured_image'] %> />
+            <div class="card_content">
+              <h2><%= blog['title'] %></h2>
+              <p>
+                <span>Summary: </span>
+                <%= blog['summary'] %>...
+              </p>
+              <div class="t_ag_container">
+                <p>Tags :</p>
+
+                <% blog['tags'].each do |tag|%>
+                <div class="t_ag"><%= tag['name'] %></div>
+
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
